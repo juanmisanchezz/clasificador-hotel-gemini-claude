@@ -18,5 +18,7 @@ def traducir(fila):
         {"role": "model", "parts": [{"text": json.dumps(fila["objetivo"], ensure_ascii=False)}]}
   ]
 }
-print(traducir(filas[0]))
-
+with open ("datos/gemini/train.jsonl", "w", encoding="utf-8") as salida:
+    for fila in filas:
+        traducida = traducir(fila)
+        salida.write(json.dumps(traducida, ensure_ascii=False) + "\n")
