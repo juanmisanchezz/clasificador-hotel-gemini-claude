@@ -1,0 +1,6 @@
+# Mismas versiones que el repo del profe (thepower-modelos) donde coinciden.
+google-genai==1.42.0
+python-dotenv==1.2.4
+# Claude se llama por OpenRouter, que usa el cliente de OpenAI.
+openai==3.46.0
+pytest==9.2.0
