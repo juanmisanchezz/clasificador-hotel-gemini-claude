@@ -24,6 +24,23 @@ def test_categoria_mal():
     assert resultado["categoria_correcta"] == False
     assert resultado["prioridad_correcta"] == True
 
+def test_none():
+    texto = None
+    esperado = {"categoria": "habitacion", "prioridad": "alta"}
+    resultado = validar(texto, esperado)
+    assert resultado["json_valido"] == False
+    assert resultado["categoria_correcta"] == False
+    assert resultado["prioridad_correcta"] == False
+
+def test_numeros():
+    texto = "5"
+    esperado = {"categoria": "habitacion", "prioridad": "alta"}
+    resultado = validar(texto, esperado)
+    assert resultado["json_valido"] == False
+    assert resultado["categoria_correcta"] == False
+    assert resultado["prioridad_correcta"] == False
+
+
 def test_prioridad_mala():
     texto = '{"categoria": "habitacion", "prioridad": "baja", "respuesta": "Lo sentimos"}'
     esperado = {"categoria": "habitacion", "prioridad": "alta"}
