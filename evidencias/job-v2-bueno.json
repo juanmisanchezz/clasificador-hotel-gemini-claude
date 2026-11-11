@@ -1,0 +1,16 @@
+{
+  "name": "projects/966303169878/locations/europe-west4/tuningJobs/3186084599339941888",
+  "state": "JOB_STATE_RUNNING",
+  "base_model": "gemini-3.1-flash-lite",
+  "create_time": "2026-11-11T17:28:08.800681Z",
+  "tuned_model_display_name": "clasificador-hotel-gemini-v2",
+  "error": null,
+  "supervised_tuning_spec": {
+    "hyper_parameters": {
+      "adapter_size": "ADAPTER_SIZE_EIGHT",
+      "epoch_count": 2
+    },
+    "training_dataset_uri": "gs://clasificador-hotel-gemini-datos/p8/train.jsonl",
+    "validation_dataset_uri": "gs://clasificador-hotel-gemini-datos/p8/validacion.jsonl"
+  }
+}

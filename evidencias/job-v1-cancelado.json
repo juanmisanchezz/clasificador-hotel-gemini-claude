@@ -1,0 +1,20 @@
+{
+  "name": "projects/966303169878/locations/europe-west4/tuningJobs/7996773426301763584",
+  "state": "JOB_STATE_CANCELLED",
+  "base_model": "gemini-3.1-flash-lite",
+  "create_time": "2026-11-11T17:23:32.470218Z",
+  "tuned_model_display_name": "clasificador-hotel-gemini",
+  "error": {
+    "code": 1,
+    "message": "CANCELED"
+  },
+  "supervised_tuning_spec": {
+    "hyper_parameters": {
+      "epoch_count": 2,
+      "learning_rate_multiplier": 8.0
+    },
+    "training_dataset_uri": "gs://clasificador-hotel-gemini-datos/p8/train.jsonl",
+    "validation_dataset_uri": "gs://clasificador-hotel-gemini-datos/p8/validacion.jsonl"
+  },
+  "nota": "Cancelado en PENDING: el 8 se puso por error en el learning rate en vez del tamaño del adaptador."
+}
