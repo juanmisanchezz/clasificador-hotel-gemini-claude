@@ -1,4 +1,7 @@
 import json
+import os
+from dotenv import load_dotenv
+from google import genai
 
 filas = []
 
@@ -15,3 +18,11 @@ for fila in filas:
 
 print (len(textos))
 
+load_dotenv()
+proyecto = os.getenv("GOOGLE_CLOUD_PROJECT")
+cliente = genai.Client(vertexai=True, project=proyecto, location="global")
+
+respuesta = cliente.models.count_tokens(model="gemini-3.1-flash-lite", contents="\n".join(textos))
+print(respuesta.total_tokens)
+
+print(proyecto)
