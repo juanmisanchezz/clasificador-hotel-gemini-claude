@@ -20,7 +20,8 @@ def preguntar_gemini(incidencia, modelo):
                                           max_output_tokens=180, 
                                           http_options=types.HttpOptions(extra_body={"generationConfig": {"thinkingConfig": {"thinkingLevel": "MINIMAL"}}}))
     respuesta = cliente.models.generate_content(model= modelo, contents= incidencia, config=config)
-    return  respuesta.text
+    return respuesta.text, respuesta.usage_metadata.prompt_token_count, respuesta.usage_metadata.candidates_token_count
+
 
 def cliente_claude():
 
@@ -43,9 +44,9 @@ def preguntar_claude(incidencia):
                                 ensure_ascii=False)})
                 
     mensaje.append({"role": "user", "content": incidencia})
-    
+
     respuesta = cliente.chat.completions.create(model="anthropic/claude-haiku-4.5",
                                                 messages=mensaje,
                                                 temperature=0,
                                                 max_tokens=180)
-    return respuesta.choices[0].message.content
+    return respuesta.choices[0].message.content, respuesta.usage.prompt_tokens, respuesta.usage.completion_tokens
