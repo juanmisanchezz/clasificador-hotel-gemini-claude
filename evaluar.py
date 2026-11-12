@@ -6,6 +6,7 @@ import time
 
 def evaluar (nombre, split, cuantos):
     filas = open ("datos/" + split + ".jsonl").readlines()[:cuantos]
+    archivo = open("resultados/" + nombre + "_" + split + ".jsonl", "w")
     for fila in filas:
         ejemplo = json.loads(fila)
         inicio = time.perf_counter()
@@ -21,7 +22,19 @@ def evaluar (nombre, split, cuantos):
             texto, entrada, salida = preguntar_claude(ejemplo["incidencia"])
         latencia = time.perf_counter()- inicio
         resultado = validar(texto, ejemplo["objetivo"])
-
+        registro = {
+            "id": ejemplo["id"],
+            "incidencia": ejemplo["incidencia"],
+            "esperado": ejemplo["objetivo"],
+            "respuesta": texto,
+            "resultado": resultado,
+            "latencia": latencia,
+            "tokens_entrada": entrada,
+            "tokens_salida": salida,
+        }
+        archivo.write(json.dumps(registro, ensure_ascii=False) + "\n")
         print (ejemplo["id"], resultado, latencia)
+    archivo.close()
+    
 
 evaluar("gemini_ajustado", "validacion", 2)
