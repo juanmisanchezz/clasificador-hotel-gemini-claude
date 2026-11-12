@@ -1,5 +1,6 @@
 import os 
 from openai import OpenAI
+import json
 from dotenv import load_dotenv
 from google import genai
 from google.genai import types
@@ -27,9 +28,24 @@ def cliente_claude():
 
 def preguntar_claude(incidencia):
     cliente = cliente_claude()
-    mensajes = [{"role": "system","content":open("prompts/basico.txt").read() } , {"role": "user", "content": incidencia}]
-    respuesta= cliente.chat.completions.create(model="anthropic/claude-haiku-4.5",
-                                    messages=mensajes,
-                                    temperature=0,
-                                    max_tokens=180)
+    mensaje = [{"role": "system","content":open("prompts/basico.txt").read()}]
+    ids = json.loads(open("prompts/fewshot-ids.json").read())
+
+    for fila in open("datos/train.jsonl"):
+            
+            ejemplo = json.loads(fila)
+
+            if ejemplo["id"] in ids:
+
+                mensaje.append({"role": "user", "content": ejemplo["incidencia"]})
+                mensaje.append({"role": "assistant", 
+                                "content": json.dumps(ejemplo["objetivo"], 
+                                ensure_ascii=False)})
+                
+    mensaje.append({"role": "user", "content": incidencia})
+    
+    respuesta = cliente.chat.completions.create(model="anthropic/claude-haiku-4.5",
+                                                messages=mensaje,
+                                                temperature=0,
+                                                max_tokens=180)
     return respuesta.choices[0].message.content
