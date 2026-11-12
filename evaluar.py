@@ -20,7 +20,8 @@ def evaluar (nombre, split, cuantos):
         else:
             texto, entrada, salida = preguntar_claude(ejemplo["incidencia"])
         latencia = time.perf_counter()- inicio
+        resultado = validar(texto, ejemplo["objetivo"])
 
-        print (ejemplo["id"], texto, latencia)
+        print (ejemplo["id"], resultado, latencia)
 
 evaluar("gemini_ajustado", "validacion", 2)
