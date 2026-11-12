@@ -2,11 +2,13 @@ import json
 from modelos_remotos import preguntar_gemini, preguntar_claude
 from validador import validar
 import os
+import time
 
 def evaluar (nombre, split, cuantos):
     filas = open ("datos/" + split + ".jsonl").readlines()[:cuantos]
     for fila in filas:
         ejemplo = json.loads(fila)
+        inicio = time.perf_counter()
         if nombre == "gemini_base":
             texto, entrada, salida = preguntar_gemini(ejemplo["incidencia"], 
                                                       "gemini-3.1-flash-lite")
@@ -17,7 +19,8 @@ def evaluar (nombre, split, cuantos):
 
         else:
             texto, entrada, salida = preguntar_claude(ejemplo["incidencia"])
+        latencia = time.perf_counter()- inicio
 
-        print (ejemplo["id"], texto)
+        print (ejemplo["id"], texto, latencia)
 
 evaluar("gemini_ajustado", "validacion", 2)
