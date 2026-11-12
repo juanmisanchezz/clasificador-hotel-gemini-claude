@@ -51,7 +51,8 @@ def evaluar (nombre, split, cuantos):
 
     
 
-evaluar("gemini_base", "validacion", 3)
-evaluar("gemini_ajustado", "validacion", 3)
-evaluar("claude_prompt", "validacion", 3)
+evaluar("gemini_base", "test", 30)
+evaluar("gemini_ajustado", "test", 30)
+evaluar("claude_prompt", "test", 30)
+
 
