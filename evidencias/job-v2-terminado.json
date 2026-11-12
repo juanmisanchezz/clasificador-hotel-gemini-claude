@@ -1,0 +1,185 @@
+{
+  "name": "projects/966303169878/locations/europe-west4/tuningJobs/3186084599339941888",
+  "state": "JOB_STATE_SUCCEEDED",
+  "create_time": "2026-11-11T17:28:08.800681Z",
+  "start_time": "2026-11-11T17:28:10.010966Z",
+  "end_time": "2026-11-11T18:09:51.548551Z",
+  "update_time": "2026-11-11T18:09:51.548551Z",
+  "base_model": "gemini-3.1-flash-lite",
+  "tuned_model": {
+    "model": "projects/966303169878/locations/eu/models/2419840374781509632@1",
+    "endpoint": "projects/966303169878/locations/eu/endpoints/6671097685530902528",
+    "checkpoints": [
+      {
+        "checkpoint_id": "1",
+        "epoch": 2,
+        "step": 11,
+        "endpoint": "projects/966303169878/locations/eu/endpoints/7355644828891217920"
+      },
+      {
+        "checkpoint_id": "2",
+        "epoch": 2,
+        "step": 22,
+        "endpoint": "projects/966303169878/locations/eu/endpoints/6671097685530902528"
+      }
+    ]
+  },
+  "supervised_tuning_spec": {
+    "hyper_parameters": {
+      "adapter_size": "ADAPTER_SIZE_EIGHT",
+      "epoch_count": 2,
+      "learning_rate_multiplier": 2.0
+    },
+    "training_dataset_uri": "gs://clasificador-hotel-gemini-datos/p8/train.jsonl",
+    "validation_dataset_uri": "gs://clasificador-hotel-gemini-datos/p8/validacion.jsonl"
+  },
+  "tuning_data_stats": {
+    "supervised_tuning_data_stats": {
+      "total_billable_token_count": 75128,
+      "tuning_dataset_example_count": 240,
+      "user_dataset_examples": [
+        {
+          "parts": [
+            {
+              "text": "La tarjeta de mi habitación no abre la puerta y no puedo entrar."
+            }
+          ],
+          "role": "user"
+        },
+        {
+          "parts": [
+            {
+              "text": "{\"categoria\": \"habitacion\", \"prioridad\": \"alta\", \"respuesta\": \"Lamentamos la molestia. Indíquenos su número de habitación para que recepción pueda revisarlo.\"}"
+            }
+          ],
+          "role": "model"
+        },
+        {
+          "parts": [
+            {
+              "text": "Hola, la tarjeta de mi habitación no abre la puerta y no puedo entrar."
+            }
+          ],
+          "role": "user"
+        },
+        {
+          "parts": [
+            {
+              "text": "{\"categoria\": \"habitacion\", \"prioridad\": \"alta\", \"respuesta\": \"Lamentamos la molestia. Indíquenos su número de habitación para que recepción pueda revisarlo.\"}"
+            }
+          ],
+          "role": "model"
+        },
+        {
+          "parts": [
+            {
+              "text": "Os escribo por lo siguiente: La tarjeta de mi habitación no abre la puerta y no puedo entrar."
+            }
+          ],
+          "role": "user"
+        },
+        {
+          "parts": [
+            {
+              "text": "{\"categoria\": \"habitacion\", \"prioridad\": \"alta\", \"respuesta\": \"Lamentamos la molestia. Indíquenos su número de habitación para que recepción pueda revisarlo.\"}"
+            }
+          ],
+          "role": "model"
+        }
+      ],
+      "user_input_token_distribution": {
+        "buckets": [
+          {
+            "count": 13.0,
+            "left": 261.0,
+            "right": 264.0
+          },
+          {
+            "count": 39.0,
+            "left": 265.0,
+            "right": 267.0
+          },
+          {
+            "count": 64.0,
+            "left": 268.0,
+            "right": 270.0
+          },
+          {
+            "count": 84.0,
+            "left": 271.0,
+            "right": 274.0
+          },
+          {
+            "count": 32.0,
+            "left": 275.0,
+            "right": 277.0
+          },
+          {
+            "count": 8.0,
+            "left": 278.0,
+            "right": 280.0
+          }
+        ],
+        "max": 280.0,
+        "mean": 270.53333333333336,
+        "median": 271.0,
+        "min": 261.0,
+        "p5": 264.0,
+        "p95": 277.0,
+        "sum": 64928
+      },
+      "user_message_per_example_distribution": {
+        "buckets": [
+          {
+            "count": 240.0,
+            "left": 2.0,
+            "right": 2.0
+          }
+        ],
+        "max": 2.0,
+        "mean": 2.0,
+        "median": 2.0,
+        "min": 2.0,
+        "p5": 2.0,
+        "p95": 2.0,
+        "sum": 480
+      },
+      "user_output_token_distribution": {
+        "buckets": [
+          {
+            "count": 60.0,
+            "left": 35.0,
+            "right": 37.0
+          },
+          {
+            "count": 60.0,
+            "left": 38.0,
+            "right": 40.0
+          },
+          {
+            "count": 60.0,
+            "left": 44.0,
+            "right": 46.0
+          },
+          {
+            "count": 60.0,
+            "left": 50.0,
+            "right": 51.0
+          }
+        ],
+        "max": 51.0,
+        "mean": 42.5,
+        "median": 40.0,
+        "min": 35.0,
+        "p5": 35.0,
+        "p95": 51.0,
+        "sum": 10200
+      }
+    }
+  },
+  "experiment": "projects/966303169878/locations/europe-west4/metadataStores/default/contexts/tuning-experiment-20261111093103016359",
+  "labels": {
+    "mg-source": "ui"
+  },
+  "tuned_model_display_name": "clasificador-hotel-gemini-v2"
+}
