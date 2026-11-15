@@ -33,5 +33,16 @@ def resumir(ruta):
 
     return ambas, media, media_entrada, media_salida
 
-print(resumir("resultados/gemini_ajustado_test.jsonl"))
-print(resumir("resultados/qwen_lora.jsonl"))
+modelos = {
+    "Qwen básico": "resultados/qwen_basico.jsonl",
+    "Qwen few-shot": "resultados/qwen_fewshot.jsonl",
+    "Qwen LoRA": "resultados/qwen_lora.jsonl",
+    "Gemini base": "resultados/gemini_base_test.jsonl",
+    "Gemini ajustado": "resultados/gemini_ajustado_test.jsonl",
+    "Claude con prompt": "resultados/claude_prompt_test.jsonl"
+}
+
+for modelo,ruta in modelos.items():
+    aciertos, latencia, entrada, salida = resumir(ruta)
+
+    print(modelo,aciertos, latencia, entrada, salida)
