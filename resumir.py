@@ -34,7 +34,7 @@ def resumir(ruta):
     return ambas, media, media_entrada, media_salida
 
 modelos = {
-    "Qwen básico": "resultados/qwen_basico.jsonl",
+    "Qwen basico": "resultados/qwen_basico.jsonl",
     "Qwen few-shot": "resultados/qwen_fewshot.jsonl",
     "Qwen LoRA": "resultados/qwen_lora.jsonl",
     "Gemini base": "resultados/gemini_base_test.jsonl",
@@ -42,7 +42,21 @@ modelos = {
     "Claude con prompt": "resultados/claude_prompt_test.jsonl"
 }
 
+tarifas = {
+    "Gemini base": (0.275, 1.65),
+    "Gemini ajustado": (0.275, 1.65),
+    "Claude con prompt": (1.00, 5.00)
+}
+
 for modelo,ruta in modelos.items():
     aciertos, latencia, entrada, salida = resumir(ruta)
 
-    print(modelo,aciertos, latencia, entrada, salida)
+    if modelo in tarifas:
+        precio_entrada, precio_salida = tarifas[modelo]
+        coste_entrada = precio_entrada * entrada
+        coste_salida = precio_salida * salida
+        coste = (coste_entrada + coste_salida) / 1000000 * 1000
+    else:
+        coste = "gratis (local)" 
+
+    print(modelo,aciertos, latencia, entrada, salida, coste)
